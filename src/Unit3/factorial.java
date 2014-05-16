@@ -30,4 +30,4 @@ public class factorial {
         int anInt = (int)(Math.random() * 10 + 1);
         System.out.println(factorial(anInt));
     }
-}}
+}
