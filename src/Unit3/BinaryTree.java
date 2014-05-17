@@ -2,6 +2,7 @@ package Unit3;
 
 /**
  * Created by Alex on 16/05/2014.
+ * uses Node.java
  */
 public class BinaryTree {
     Node root = null;
