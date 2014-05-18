@@ -10,6 +10,14 @@ public class Heap {
 
     int[] A;
     int heapSize = 0;
+
+    int getHeapSize() {
+        return this.heapSize;
+    }
+
+    void incHeapSize() {
+        heapSize++;
+    }
     //get parent's index from index of a node
     //can also use binary right shift by one position
     int Parent(int i){
@@ -25,18 +33,22 @@ public class Heap {
         return 2 * i + 1;
     }
 
+    void addElement(int[] A, int x) {
+        A[this.getHeapSize()+1] = x;
+        this.incHeapSize();
+    }
     // maintaining the heap property
     void MaxHeapify(int[] A, int i){
         int l = Left(i);
         int r = Right(i);
         int largest;
-        if (l <= heapSize(A) && A[l] > A[i]) {
+        if (l <= this.getHeapSize() && A[l] > A[i]) {
             largest = l;
         }
         else {
             largest = i;
         }
-        if (r <= heapSize(A) && A[r] > A[largest]) {
+        if (r <= this.getHeapSize() && A[r] > A[largest]) {
             largest = r;
         }
         if (largest != i) {
