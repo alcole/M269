@@ -38,6 +38,7 @@ public class Heap {
         this.incHeapSize();
     }
     // maintaining the heap property
+    //recursive implementation - iterative may be more efficient(6.2-5)
     void MaxHeapify(int[] A, int i){
         int l = Left(i);
         int r = Right(i);
@@ -56,6 +57,14 @@ public class Heap {
             A[i] = A[largest];
             A[largest] = temp;
             MaxHeapify(A, largest);
+        }
+    }
+
+    //build max heap
+    void BuildMaxHeap(int[] A) {
+        //this.getHeapSize()
+        for (int i = this.getHeapSize() / 2; i >= 1; i--) {
+            MaxHeapify(A, i);
         }
     }
 }
