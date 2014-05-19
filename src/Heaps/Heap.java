@@ -21,7 +21,7 @@ public class Heap {
     Heap() {
         HeapSize = 0;
         Heap = new ArrayList<Integer>();
-        Heap.add(Integer.MAX_VALUE);
+        //Heap.add(Integer.MAX_VALUE);
     }
 
 
@@ -82,7 +82,7 @@ public class Heap {
     //build max heap
     void BuildMaxHeap() {
         HeapSize = this.getHeapSize();
-        for (int i = this.getHeapSize() / 2; i >= 1; i--) {
+        for (int i = (this.getHeapSize() - 1)  / 2; i >= 0; i--) {
             MaxHeapify(i);
         }
     }
@@ -90,7 +90,7 @@ public class Heap {
     //
     void Heapsort() {
         this.BuildMaxHeap();
-        for (int i = this.Heap.size() - 1 ; i >= 1; i--) {
+        for (int i = this.Heap.size() - 1 ; i >= 0; i--) {
             int temp = this.Heap.get(i);
             this.Heap.set(i, this.Heap.get(1));
             this.Heap.set(1, temp);
