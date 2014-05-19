@@ -25,8 +25,18 @@ public class HeapTests {
         System.out.println();
 
         he.BuildMaxHeap();
+
+        for (Integer element: he.Heap) {
+            System.out.println(element);
+        }
+
+        he.Heapsort();
         //System.out.println(he.getHeapSize());
         //System.out.println(he.Heap.get(4));
+        for (Integer element: he.Heap) {
+            System.out.println(element);
+        }
+        he.BuildMaxHeap();
         for (Integer element: he.Heap) {
             System.out.println(element);
         }

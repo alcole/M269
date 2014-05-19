@@ -11,8 +11,6 @@ import java.util.List;
  * A[Parent(i)] >= A[i]
  */
 
-
-
 public class Heap {
 
     List<Integer> Heap;
@@ -21,7 +19,7 @@ public class Heap {
     Heap() {
         HeapSize = 0;
         Heap = new ArrayList<Integer>();
-        //Heap.add(Integer.MAX_VALUE);
+        Heap.add(0);
     }
 
 
@@ -62,13 +60,13 @@ public class Heap {
         int l = Left(i);
         int r = Right(i);
         int largest;
-        if (l > 0 && l <= this.getHeapSize() && this.Heap.get(l) > this.Heap.get(i) ) {
+        if (l > 0 && l < this.HeapSize && this.Heap.get(l) > this.Heap.get(i) ) {
             largest = l;
         }
         else {
             largest = i;
         }
-        if (r > 0 && r < this.getHeapSize() && this.Heap.get(r) > this.Heap.get(largest)) {
+        if (r > 0 && r < this.HeapSize && this.Heap.get(r) > this.Heap.get(largest)) {
             largest = r;
         }
         if (largest != i) {
@@ -82,7 +80,7 @@ public class Heap {
     //build max heap
     void BuildMaxHeap() {
         HeapSize = this.getHeapSize();
-        for (int i = (this.getHeapSize() - 1)  / 2; i >= 0; i--) {
+        for (int i = (this.getHeapSize() - 1)  / 2; i >= 1; i--) {
             MaxHeapify(i);
         }
     }
@@ -90,11 +88,12 @@ public class Heap {
     //
     void Heapsort() {
         this.BuildMaxHeap();
-        for (int i = this.Heap.size() - 1 ; i >= 0; i--) {
+        for (int i = this.Heap.size() - 1 ; i >= 2 ; i--) {
             int temp = this.Heap.get(i);
             this.Heap.set(i, this.Heap.get(1));
             this.Heap.set(1, temp);
             this.HeapSize--;
+            this.MaxHeapify(1);
         }
     }
 }
