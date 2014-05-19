@@ -1,4 +1,8 @@
 package Heaps;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Alex on 17/05/2014.
  * from Chapter 6 of CLRS introduction to algorithms
@@ -6,65 +10,91 @@ package Heaps;
  * A max-heap must satisfy the property, for every node i
  * A[Parent(i)] >= A[i]
  */
+
+
+
 public class Heap {
 
-    int[] A;
-    int heapSize = 0;
+    List<Integer> Heap;
+    int HeapSize;
+
+    Heap() {
+        HeapSize = 0;
+        Heap = new ArrayList<Integer>();
+        Heap.add(Integer.MAX_VALUE);
+    }
+
 
     int getHeapSize() {
-        return this.heapSize;
+        return this.Heap.size();
     }
 
-    void incHeapSize() {
-        heapSize++;
-    }
     //get parent's index from index of a node
     //can also use binary right shift by one position
     int Parent(int i){
         return i / 2;
     }
 
+
     //binary left shift also works
     int Left(int i){
-        return 2 * i;
+        int l = 0;
+        if (2 * i < this.getHeapSize()){
+            l =  2 * i;
+        }
+        return l;
       }
     //binary left shift plus one
     int Right(int i){
-        return 2 * i + 1;
+        int r = 0;
+        if (2 * i + 1 < this.getHeapSize()){
+            r = 2 * i + 1;
+        }
+        return r;
     }
 
-    void addElement(int[] A, int x) {
-        A[this.getHeapSize()+1] = x;
-        this.incHeapSize();
+    void addElement(int x) {
+        this.Heap.add(x);
     }
     // maintaining the heap property
     //recursive implementation - iterative may be more efficient(6.2-5)
-    void MaxHeapify(int[] A, int i){
+    void MaxHeapify(int i){
         int l = Left(i);
         int r = Right(i);
         int largest;
-        if (l <= this.getHeapSize() && A[l] > A[i]) {
+        if (l > 0 && l <= this.getHeapSize() && this.Heap.get(l) > this.Heap.get(i) ) {
             largest = l;
         }
         else {
             largest = i;
         }
-        if (r <= this.getHeapSize() && A[r] > A[largest]) {
+        if (r > 0 && r < this.getHeapSize() && this.Heap.get(r) > this.Heap.get(largest)) {
             largest = r;
         }
         if (largest != i) {
-            int temp = A[i];
-            A[i] = A[largest];
-            A[largest] = temp;
-            MaxHeapify(A, largest);
+            int temp = this.Heap.get(i);
+            this.Heap.set(i, this.Heap.get(largest));
+            this.Heap.set(largest, temp);
+            MaxHeapify(largest);
         }
     }
 
     //build max heap
-    void BuildMaxHeap(int[] A) {
-        //this.getHeapSize()
+    void BuildMaxHeap() {
+        HeapSize = this.getHeapSize();
         for (int i = this.getHeapSize() / 2; i >= 1; i--) {
-            MaxHeapify(A, i);
+            MaxHeapify(i);
+        }
+    }
+
+    //
+    void Heapsort() {
+        this.BuildMaxHeap();
+        for (int i = this.Heap.size() - 1 ; i >= 1; i--) {
+            int temp = this.Heap.get(i);
+            this.Heap.set(i, this.Heap.get(1));
+            this.Heap.set(1, temp);
+            this.HeapSize--;
         }
     }
 }
