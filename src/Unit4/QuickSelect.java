@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * Created by Alex on 20/05/2014.
+ * activity 4.1
+ *
  */
 public class QuickSelect {
 
