@@ -37,7 +37,7 @@ public class Heap {
     //binary left shift also works
     int Left(int i){
         int l = 0;
-        if (2 * i < this.getHeapSize()){
+        if (2 * i <= HeapSize){
             l =  2 * i;
         }
         return l;
@@ -45,7 +45,7 @@ public class Heap {
     //binary left shift plus one
     int Right(int i){
         int r = 0;
-        if (2 * i + 1 < this.getHeapSize()){
+        if (2 * i + 1 <= HeapSize){
             r = 2 * i + 1;
         }
         return r;
@@ -60,13 +60,13 @@ public class Heap {
         int l = Left(i);
         int r = Right(i);
         int largest;
-        if (l > 0 && l < this.HeapSize && this.Heap.get(l) > this.Heap.get(i) ) {
+        if (l > 0 && l <= this.HeapSize && this.Heap.get(l) > this.Heap.get(i) ) {
             largest = l;
         }
         else {
             largest = i;
         }
-        if (r > 0 && r < this.HeapSize && this.Heap.get(r) > this.Heap.get(largest)) {
+        if (r > 0 && r <= this.HeapSize && this.Heap.get(r) > this.Heap.get(largest)) {
             largest = r;
         }
         if (largest != i) {
@@ -79,7 +79,7 @@ public class Heap {
 
     //build max heap
     void BuildMaxHeap() {
-        HeapSize = this.getHeapSize();
+        HeapSize = this.getHeapSize() - 1;
         for (int i = (this.getHeapSize() - 1)  / 2; i >= 1; i--) {
             MaxHeapify(i);
         }
@@ -96,4 +96,6 @@ public class Heap {
             this.MaxHeapify(1);
         }
     }
+
+
 }
