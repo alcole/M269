@@ -9,4 +9,4 @@ Course description at https://msds.open.ac.uk/students/study/undergraduate/cours
 
 * Unit 3's BST is from the course materials
 * The full BST implementation is taken from CLRS introduction to Algorithms
-* Heap and Heapsort implementation from CLRS chapter 6
+* Heap, Heapsort and Priority Queue implementation from CLRS chapter 6
